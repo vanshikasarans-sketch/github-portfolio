@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experience — Vanshika Saran Sharma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero {
+  padding: 160px 56px 80px;
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+}
+.page-hero-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
+.page-hero-title { font-family: var(--serif); font-size: clamp(48px, 5.5vw, 78px); font-weight: 300; line-height: 1.05; }
+.page-hero-title em { font-style: italic; color: var(--accent); }
+.page-hero-right p { font-family: var(--serif); font-size: 20px; font-weight: 300; font-style: italic; line-height: 1.65; color: var(--muted); }
+.page-divider { height: 1px; background: var(--line); max-width: 1200px; margin: 0 auto; }
+
+/* EXPERIENCE TIMELINE */
+.experience { padding: 80px 56px 100px; max-width: 1200px; margin: 0 auto; }
+.exp-grid { border-top: 1px solid var(--line); }
+.exp-item {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 48px; padding: 52px 0;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s; cursor: default;
+  position: relative;
+}
+.exp-item:hover { background: rgba(196,98,45,0.025); }
+.exp-item::before {
+  content: ''; position: absolute; left: -56px; top: 52px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent-soft); border: 1px solid var(--accent);
+  transition: background 0.2s;
+}
+.exp-item:hover::before { background: var(--accent); }
+.exp-meta { padding-top: 5px; }
+.exp-date { font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
+.exp-org { font-size: 13px; color: var(--accent); font-weight: 400; margin-bottom: 4px; }
+.exp-location { font-size: 11px; color: var(--muted); }
+.exp-role { font-family: var(--serif); font-size: 28px; font-weight: 300; margin-bottom: 16px; line-height: 1.2; }
+.exp-desc { font-size: 13.5px; line-height: 1.95; color: var(--muted); max-width: 600px; margin-bottom: 20px; }
+.exp-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.exp-tag {
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  border: 1px solid var(--line); padding: 4px 12px; color: var(--muted);
+  transition: border-color 0.2s, color 0.2s;
+}
+.exp-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+/* IMAGE CALLOUT */
+.exp-image-callout {
+  margin: 20px 0 0; width: 100%; max-width: 480px;
+  aspect-ratio: 16/9; overflow: hidden; position: relative;
+  background: var(--accent-soft);
+}
+.exp-image-callout img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.exp-image-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; font-family: var(--serif); font-style: italic;
+  font-size: 12px; color: rgba(100,80,60,0.5);
+}
+
+/* SIDEBAR TIMELINE DOT FIX */
+.experience { position: relative; padding-left: 56px; }
+
+/* NGO CALLOUT */
+.ngo-band { background: var(--ink); padding: 80px 56px; }
+.ngo-inner { max-width: 1200px; margin: 0 auto; }
+.ngo-label { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+.ngo-title { font-family: var(--serif); font-size: clamp(28px,3.5vw,44px); font-weight: 300; color: var(--cream); line-height: 1.25; }
+.ngo-title em { font-style: italic; color: var(--accent); }
+
+@media (max-width: 900px) {
+  .ngo-band { padding: 60px 20px; }
+  .ngo-inner > div[style] { grid-template-columns: 1fr !important; gap: 16px !important; }
+}
+
+@media (max-width: 900px) {
+  .page-hero { grid-template-columns: 1fr; padding: 120px 20px 60px; gap: 32px; }
+  .experience { padding: 48px 20px 64px; }
+  .exp-item { grid-template-columns: 1fr; gap: 16px; }
+  .exp-item::before { display: none; }
+  .ngo-inner { grid-template-columns: 1fr; }
+  .ngo-band { padding: 60px 20px; }
+  .ngo-stat { text-align: left; }
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Vanshika</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="experience.html" class="active">Experience</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html" class="cta">Say Hello</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div>
+    <div class="page-hero-label reveal">Experience</div>
+    <h1 class="page-hero-title reveal reveal-delay-1">A career built on <em>impact.</em></h1>
+  </div>
+  <div class="page-hero-right">
+    <p class="reveal reveal-delay-2">From classrooms to boardrooms - every experience has shaped a leader who drives impact with strategy, creativity, and heart. Committed to empowering teams, building brands, and leaving every space better than found.</p>
+  </div>
+</div>
+<div class="page-divider"></div>
+
+<section class="experience">
+  <div class="exp-grid">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-date">May 2025 – April 2026</div>
+        <div class="exp-org">Algonquin Students' Association</div>
+        <div class="exp-location">Ottawa, Canada</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">President, Board of Directors</div>
+        <div class="exp-desc">
+  <ul>
+    <li>Elected as the primary representative and figurehead of the organization, serving as the official voice of the Board and advocating for a student body of 20,000+ (in Ottawa, Perth & Pembroke campuses) across institutional and community platforms.</li>
+    <li>Chaired Board meetings, upholding strong governance practices and ensuring compliance with organizational policies and bylaws.</li>
+    <li>Provided leadership and ongoing support to Board members to enable effective governance and strong team performance.</li>
+    <li>Led strategic Board communications through media, student publications, and social platforms to enhance transparency and student engagement.</li>
+    <li>Managed fiduciary responsibilities by authorizing Board documents and expenditures with a high standard of accountability and diligence.</li>
+    <li>Enabled effective governance by ensuring Board members had timely access to critical information for informed decision-making.</li>
+    <li>Represented the Board at official college events and external advocacy meetings, strengthening relationships with institutional and community stakeholders.</li>
+  </ul>
+</div>
+
+        <!-- Add your president/BOD photo here -->
+        <div class="exp-image-callout">
+          <!-- <img src="bod-photo.jpg" alt="Board of Directors"> -->
+          <img src="Board of Directors 2025-8.jpg">
+          <div class="exp-image-placeholder" style="background:linear-gradient(135deg,#E8D5C4,#C4A882);">Add President / BOD photo here</div>
+        </div>
+        <div class="exp-tags" style="margin-top:20px;">
+          <span class="exp-tag">Governance</span><span class="exp-tag">Leadership</span><span class="exp-tag">Advocacy</span><span class="exp-tag">Not-for-Profit</span><span class="exp-tag">Public Speaking</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal reveal-delay-1">
+      <div class="exp-meta">
+        <div class="exp-date">Apr 2024 – Aug 2024</div>
+        <div class="exp-org">Cognizant</div>
+        <div class="exp-location">Remote</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Senior Analyst</div>
+        <div class="exp-desc">
+  <ul>
+    <li>Worked closely with strategy, design, and technology teams to develop clear, client-focused value propositions aligned to business needs.</li>
+    <li>Contributed to shaping strong proposal narratives by consolidating inputs from multiple stakeholders and subject-matter experts.</li>
+    <li>Supported leadership with opportunity assessment, deal strategy, and competitive positioning to strengthen the sales pipeline.</li>
+    <li>Managed complex marketing-led projects, ensuring timely delivery and alignment with project objectives.</li>
+    <li>Mentored junior team members, supporting skill development and professional growth.</li>
+    <li>Contributed to business development initiatives aimed at driving growth and improving proposal effectiveness.</li>
+    <li>Used data and insights to support strategic decision-making and solution development.</li>
+  </ul>
+</div>
+
+        <div class="exp-tags">
+          <span class="exp-tag">Business Development</span><span class="exp-tag">Mentorship</span><span class="exp-tag">Strategy</span><span class="exp-tag">Marketing</span><span class="exp-tag">Proposal Narratives</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal reveal-delay-2">
+      <div class="exp-meta">
+        <div class="exp-date">Jul 2021 – Apr 2024</div>
+        <div class="exp-org">Cognizant</div>
+        <div class="exp-location">Remote</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Analyst</div>
+        <div class="exp-desc">
+  <ul>
+    <li>Orchestrated end-to-end opportunity and bid management activities, including RFPs, analyst and client RFIs, POV presentations, and proactive pitches.</li>
+    <li>Analyzed data and insights to support the development of competitive deal solutions aligned to client needs.</li>
+    <li>Built expertise in digital experience offerings, with a focus on content and marketing, strategy, and design.</li>
+    <li>Led internal digital marketing initiatives to strengthen brand presence and engagement across the organization.</li>
+    <li>Drove proactive proposal efforts, reinforcing the role of brand narrative in influencing client perception and business growth.</li>
+  </ul>
+</div>
+
+        <div class="exp-tags">
+          <span class="exp-tag">Bid Management</span><span class="exp-tag">Content Strategy</span><span class="exp-tag">Digital Marketing</span><span class="exp-tag">Brand Narrative</span><span class="exp-tag">RFP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal reveal-delay-3">
+      <div class="exp-meta">
+        <div class="exp-date">Sep–Nov 2020</div>
+        <div class="exp-org">Britannia Industries Ltd</div>
+        <div class="exp-location">Bangalore, India</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Marketer</div>
+        <div class="exp-desc">
+  <ul>
+    <li>Managed end-to-end, 360° campaign planning, execution, and oversight for Britannia Cheese in Bhutan, ensuring alignment with brand objectives and market strategy.</li>
+    <li>Led all aspects of campaign management, including creative strategy, media planning, production, and performance monitoring.</li>
+    <li>Conducted primary qualitative research and performed in-depth analysis to support product renovation initiatives for Britannia Cheese.</li>
+    <li>Synthesized research insights into actionable recommendations, contributing to strategic brand and product decisions.</li>
+    <li>Collaborated with cross-functional teams to ensure campaigns were executed effectively and delivered measurable results.</li>
+  </ul>
+</div>
+<div class="exp-tags">
+          <span class="exp-tag">FMCG</span><span class="exp-tag">Campaign Management</span><span class="exp-tag">Market Research</span><span class="exp-tag">360° Marketing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal reveal-delay-4">
+      <div class="exp-meta">
+        <div class="exp-date">Jun–Aug 2020</div>
+        <div class="exp-org">Isobar</div>
+        <div class="exp-location">Gurugram, India</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Brand Strategist</div>
+        <div class="exp-desc">
+  <ul>
+    <li>Selected to be part of KickStrat, a competitive 24-week strategy internship program by Isobar India (part of Dentsu Aegis Network), focused on developing future leaders in account planning and brand strategy.</li>
+    <li>Developed social media and brand strategy for leading brands including Antiquity (Diageo) and American Express.</li>
+    <li>Contributed to business pitches and strategic recommendations for brands such as Skore, Eicher Motors, and Antiquity.</li>
+    <li>Built expertise in consumer insights, brand positioning, and integrated campaign planning through hands-on, real-world projects.</li>
+    <li>Collaborated with cross-functional teams to solve marketing challenges, delivering creative and insight-driven strategic solutions.</li>
+    <li>Strengthened core skills in research, storytelling, and strategic thinking within a fast-paced agency environment.</li>
+  </ul>
+</div>
+<div class="exp-tags">
+          <span class="exp-tag">Social Media</span><span class="exp-tag">Brand Strategy</span><span class="exp-tag">Pitching</span><span class="exp-tag">Diageo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal reveal-delay-5">
+      <div class="exp-meta">
+        <div class="exp-date">May–Jun 2020</div>
+        <div class="exp-org">Ogilvy</div>
+        <div class="exp-location">Kuala Lumpur, Malaysia</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Account Planner</div>
+        <div class="exp-desc">
+  <ul>
+    <li>Collaborated with interdepartmental teams to develop strategy frameworks for leading FMCG brands, including Milo and Mondelez.</li>
+    <li>Conducted primary and secondary research to uncover actionable consumer insights.</li>
+    <li>Created detailed consumer journeys and personas to guide brand and campaign strategies.</li>
+    <li>Designed mainline and digital strategy frameworks, integrating insights across channels.</li>
+    <li>Delivered comprehensive market research reports to support brand planning and foster team alignment.</li>
+  </ul>
+</div>
+<div class="exp-tags">
+          <span class="exp-tag">Account Planning</span><span class="exp-tag">Consumer Insights</span><span class="exp-tag">FMCG</span><span class="exp-tag">Global Agency</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-date">May 2018 – Jun 2018</div>
+        <div class="exp-org">AlgoWorks</div>
+        <div class="exp-location">Noida, India</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Digital Marketer</div>
+        <div class="exp-desc">
+  <ul>
+    <li>Assisted in digital marketing initiatives including SEO optimization, keyword research, and competitor analysis.</li>
+    <li>Created and managed campaigns using Google tools, Microsoft Outlook, and presentation software to support strategy execution.</li>
+    <li>Conducted research and data analysis to improve online visibility and engagement.</li>
+  </ul>
+</div>
+<div class="exp-tags"><span class="exp-tag">Digital Marketing</span><span class="exp-tag">Content</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOCIAL IMPACT -->
+<div class="ngo-band">
+  <div class="ngo-inner" style="grid-template-columns: 1fr; gap: 0;">
+
+    <div style="margin-bottom: 56px;" class="reveal">
+      <div class="ngo-label">Social Impact</div>
+      <h2 class="ngo-title" style="max-width:600px;">Giving back has always been part of <em>the journey.</em></h2>
+    </div>
+
+    <!-- ITEM 1 -->
+    <div style="display:grid; grid-template-columns: 180px 1fr; gap: 48px; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.08);" class="reveal">
+      <div>
+        <div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;">Apr 2023 – Aug 2024</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.45);">Hridya Sparsh Foundation</div>
+        <div style="margin-top:10px; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; border:1px solid rgba(196,98,45,0.4); color:var(--accent); padding:3px 10px; display:inline-block;">Health</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif); font-size:22px; font-weight:300; color:var(--cream); margin-bottom:14px;">Co-Founder</div>
+        <p style="font-size:13.5px; line-height:1.9; color:rgba(255,255,255,0.42);">Co-founded and oversee Hridya Sparsh Foundation, an NGO dedicated to community upliftment with a special focus on health-related support for the elderly. Lead strategy, develop and execute programs, coordinate volunteers, and implement initiatives that deliver care, resources, and sustainable solutions to enhance the well-being of senior citizens.</p>
+      </div>
+    </div>
+
+    <!-- ITEM 2 -->
+    <div style="display:grid; grid-template-columns: 180px 1fr; gap: 48px; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.08);" class="reveal reveal-delay-1">
+      <div>
+        <div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;">Oct 2019 – Nov 2019</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.45);">Alankaar India Trust</div>
+        <div style="margin-top:10px; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; border:1px solid rgba(196,98,45,0.4); color:var(--accent); padding:3px 10px; display:inline-block;">Education</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif); font-size:22px; font-weight:300; color:var(--cream); margin-bottom:14px;">Digital Marketer</div>
+        <p style="font-size:13.5px; line-height:1.9; color:rgba(255,255,255,0.42);">Completed a Social Responsibility Project with Alankaar India Trust, working on the Underprivileged Development Programme (UDP). Led a team of 5 members, overseeing end-to-end campaign delivery including digital marketing, strategy and content curation, and on-ground field visits to support program initiatives.</p>
+      </div>
+    </div>
+
+    <!-- ITEM 3 -->
+    <div style="display:grid; grid-template-columns: 180px 1fr; gap: 48px; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.08);" class="reveal reveal-delay-2">
+      <div>
+        <div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;">May 2017 – Jul 2017</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.45);">CanKids KidsCan</div>
+        <div style="margin-top:10px; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; border:1px solid rgba(196,98,45,0.4); color:var(--accent); padding:3px 10px; display:inline-block;">Children</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif); font-size:22px; font-weight:300; color:var(--cream); margin-bottom:14px;">Content Writer</div>
+        <p style="font-size:13.5px; line-height:1.9; color:rgba(255,255,255,0.42);">Crafted meaningful content to share the stories of children surviving cancer and their families, supporting awareness and hope. Contributed to campaigns including the launch of Cycle for Gold — India's largest charity cycling challenge — raising funds for young cancer survivors.</p>
+      </div>
+    </div>
+
+    <!-- ITEM 4 -->
+    <div style="display:grid; grid-template-columns: 180px 1fr; gap: 48px; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);" class="reveal reveal-delay-3">
+      <div>
+        <div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;">May 2017 – Jul 2017</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.45);">YES Foundation (India)</div>
+        <div style="margin-top:10px; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; border:1px solid rgba(196,98,45,0.4); color:var(--accent); padding:3px 10px; display:inline-block;">Children</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif); font-size:22px; font-weight:300; color:var(--cream); margin-bottom:14px;">Media for Social Change Fellow</div>
+        <p style="font-size:13.5px; line-height:1.9; color:rgba(255,255,255,0.42);">Selected as a Media for Social Change Fellow, trained by industry leaders in content creation, digital media, photography, and filmmaking. Completed a 2-month placement with a not-for-profit organisation, contributing to social impact initiatives through strategic communications, content development, and media campaigns.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span class="footer-copy">© 2026 Vanshika Saran Sharma. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.linkedin.com/in/vanshikasaransharma/" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Vanshika Saran Sharma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.contact-hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  background: var(--ink);
+}
+.contact-left {
+  padding: 160px 64px 80px 56px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.contact-eyebrow {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 28px;
+}
+.contact-heading {
+  font-family: var(--serif); font-size: clamp(44px,5.5vw,76px);
+  font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 32px;
+}
+.contact-heading em { font-style: italic; color: var(--accent); }
+.contact-sub {
+  font-size: 14px; line-height: 1.9; color: rgba(255,255,255,0.42); max-width: 380px; margin-bottom: 56px;
+}
+.contact-email-link {
+  display: inline-block; font-family: var(--serif); font-size: clamp(18px,2vw,26px);
+  font-style: italic; color: var(--cream); text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 4px;
+  transition: border-color 0.2s, color 0.2s; margin-bottom: 56px;
+}
+.contact-email-link:hover { border-color: var(--accent); color: var(--accent); }
+.contact-socials { display: flex; flex-direction: column; gap: 16px; }
+.social-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  text-decoration: none; transition: padding-left 0.2s;
+}
+.social-link:hover { padding-left: 6px; }
+.social-link:hover .social-arrow { color: var(--accent); }
+.social-name { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+.social-handle { font-family: var(--serif); font-size: 17px; font-style: italic; color: var(--cream); }
+.social-arrow { color: rgba(255,255,255,0.2); font-size: 16px; transition: color 0.2s; }
+
+.contact-right {
+  padding: 160px 56px 80px 64px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.contact-right-label {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); margin-bottom: 48px;
+}
+.contact-info-grid { display: grid; gap: 0; }
+.info-item {
+  padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: grid; grid-template-columns: 100px 1fr; gap: 24px; align-items: start;
+}
+.info-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+.info-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.25); padding-top: 4px; }
+.info-value { font-family: var(--serif); font-size: 18px; font-weight: 300; color: var(--cream); line-height: 1.5; }
+.info-value a { color: var(--cream); text-decoration: none; transition: color 0.2s; }
+.info-value a:hover { color: var(--accent); }
+
+.availability-badge {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 56px;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 20px;
+}
+.availability-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #4CAF50; animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+}
+
+@media (max-width: 900px) {
+  .contact-hero { grid-template-columns: 1fr; min-height: auto; }
+  .contact-left { padding: 120px 20px 60px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .contact-right { padding: 60px 20px 80px; }
+  .info-item { grid-template-columns: 1fr; gap: 6px; }
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav style="mix-blend-mode:normal;border-bottom:1px solid rgba(255,255,255,0.06);">
+  <a href="index.html" class="nav-logo" style="color:var(--cream);">Vanshika</a>
+  <ul class="nav-links">
+    <li><a href="index.html" style="color:var(--cream);">Home</a></li>
+    <li><a href="about.html" style="color:var(--cream);">About</a></li>
+    <li><a href="experience.html" style="color:var(--cream);">Experience</a></li>
+    <li><a href="projects.html" style="color:var(--cream);">Projects</a></li>
+    <li><a href="contact.html" class="cta active">Say Hello</a></li>
+  </ul>
+</nav>
+
+<div class="contact-hero">
+  <div class="contact-left">
+    <div>
+      <div class="contact-eyebrow reveal">Get in Touch</div>
+      <h1 class="contact-heading reveal reveal-delay-1">Let's build something <em>meaningful.</em></h1>
+      <p class="contact-sub reveal reveal-delay-2">Open to collaborations, speaking engagements, brand consulting, and conversations about leadership, governance, and impact. I'd love to hear from you.</p>
+      <a href="mailto:vanshikasarans@gmail.com" class="contact-email-link reveal reveal-delay-3">vanshikasarans@gmail.com</a>
+    </div>
+    <div class="contact-socials reveal reveal-delay-4">
+      <a href="https://www.linkedin.com/in/vanshikasaransharma/" target="_blank" class="social-link">
+        <div><div class="social-name">LinkedIn</div><div class="social-handle">vanshikasaransharma</div></div>
+        <span class="social-arrow">↗</span>
+      </a>
+      <a href="tel:+14378720568" class="social-link">
+        <div><div class="social-name">Phone</div><div class="social-handle">+1 (437) 872-0568</div></div>
+        <span class="social-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="contact-right">
+    <div class="contact-right-label reveal">Details</div>
+    <div class="contact-info-grid">
+      <div class="info-item reveal">
+        <div class="info-label">Location</div>
+        <div class="info-value">Toronto, Ontario<br>Canada</div>
+      </div>
+      <div class="info-item reveal reveal-delay-1">
+        <div class="info-label">Email</div>
+        <div class="info-value"><a href="mailto:vanshikasarans@gmail.com">vanshikasarans@gmail.com</a></div>
+      </div>
+      <div class="info-item reveal reveal-delay-2">
+        <div class="info-label">Phone</div>
+        <div class="info-value"><a href="tel:+14378720568">+1 (437) 872-0568</a></div>
+      </div>
+      <!-- <div class="info-item reveal reveal-delay-3">
+        <div class="info-label">Currently</div>
+        <div class="info-value">President, Algonquin SA<br>PG Brand Management Student</div>
+      </div>
+      <div class="info-item reveal reveal-delay-4">
+        <div class="info-label">Open to</div>
+        <div class="info-value">Brand consulting · Speaking<br>Governance · Collaborations</div>
+      </div>
+    </div> -->
+    <div class="availability-badge reveal reveal-delay-5">
+      <div class="availability-dot"></div>
+      Available for opportunities
+    </div>
+  </div>
+</div>
+
+<footer style="background:rgba(15,10,8,1);">
+  <span class="footer-copy">© 2026 Vanshika Saran Sharma. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="experience.html">Experience</a>
+    <a href="projects.html">Projects</a>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

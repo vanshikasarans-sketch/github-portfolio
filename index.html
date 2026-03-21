@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanshika Saran Sharma — Brand Strategist & Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 140px 64px 88px 56px;
+  position: relative; z-index: 2;
+}
+.hero-tag {
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 28px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-tag::before {
+  content: ''; display: block; width: 28px; height: 1px; background: var(--accent);
+}
+.hero-name {
+  font-family: var(--serif); font-size: clamp(54px, 6vw, 90px);
+  font-weight: 300; line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 10px;
+}
+.hero-name em { font-style: italic; color: var(--accent); }
+.hero-subtitle {
+  font-family: var(--serif); font-size: clamp(17px, 2vw, 24px);
+  font-weight: 300; color: var(--muted); margin-bottom: 44px; font-style: italic;
+}
+.hero-bio {
+  font-size: 14px; line-height: 1.9; color: var(--muted);
+  max-width: 380px; margin-bottom: 52px;
+}
+.hero-ctas { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+
+.hero-right { position: relative; overflow: hidden; background: var(--accent-soft); }
+.hero-right img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  /* No tint/blend-mode — clean natural photo */
+}
+.hero-photo-placeholder {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, #DDD0C0 0%, #C4A882 55%, #B07850 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; color: rgba(255,255,255,0.55); font-family: var(--serif);
+  font-size: 14px; font-style: italic;
+}
+.hero-photo-placeholder svg { opacity: 0.35; width: 72px; height: 72px; }
+
+.hero-scroll {
+  position: absolute; bottom: 48px; left: 56px;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); display: flex; align-items: center; gap: 12px; z-index: 2;
+}
+.hero-scroll::before {
+  content: ''; display: block; width: 1px; height: 44px;
+  background: var(--muted); opacity: 0.35;
+}
+.hero-location {
+  position: absolute; top: 50%; right: 44px;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: var(--serif); font-size: 11px; letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.45); z-index: 3; white-space: nowrap;
+}
+
+/* INTRO STRIP */
+.intro-strip {
+  padding: 88px 56px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  max-width: 1200px; margin: 0 auto;
+}
+.intro-quote {
+  font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 300; line-height: 1.3;
+}
+.intro-quote em { font-style: italic; color: var(--accent); }
+.intro-right p {
+  font-size: 14px; line-height: 1.95; color: var(--muted); margin-bottom: 20px;
+}
+.intro-right p strong { color: var(--ink); font-weight: 500; }
+
+/* STATS */
+.stats-band {
+  background: var(--ink); padding: 0;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.stat-block {
+  padding: 52px 40px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.3s;
+}
+.stat-block:last-child { border-right: none; }
+.stat-block:hover { background: rgba(196,98,45,0.1); }
+.stat-num {
+  font-family: var(--serif); font-size: 56px; font-weight: 300;
+  color: var(--cream); line-height: 1; margin-bottom: 10px;
+}
+.stat-num span { color: var(--accent); }
+.stat-label {
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.38); line-height: 1.6;
+}
+
+/* GLIMPSE SECTION */
+.glimpse { padding: 100px 56px; background: var(--cream); }
+.glimpse-inner { max-width: 1200px; margin: 0 auto; }
+.glimpse-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 56px;
+}
+.glimpse-card {
+  position: relative; overflow: hidden; aspect-ratio: 4/3;
+  background: var(--accent-soft); cursor: pointer;
+  text-decoration: none; display: block;
+}
+.glimpse-card img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  transform: scale(1);
+  transition: transform 0.5s ease;
+}
+.glimpse-card:hover img { transform: scale(1.01); }
+.glimpse-photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; font-family: var(--serif); font-style: italic;
+  font-size: 13px; color: rgba(255,255,255,0.5);
+}
+.glimpse-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(26,20,16,0.75) 0%, transparent 55%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 28px 24px;
+  opacity: 0; transition: opacity 0.3s;
+}
+.glimpse-card:hover .glimpse-overlay { opacity: 1; }
+.glimpse-label {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 6px;
+}
+.glimpse-title { font-family: var(--serif); font-size: 22px; font-weight: 300; color: var(--cream); }
+.glimpse-arrow {
+  position: absolute; top: 20px; right: 20px;
+  width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: var(--cream); font-size: 14px;
+  transform: rotate(-45deg) scale(0.8); opacity: 0;
+  transition: all 0.3s;
+}
+.glimpse-card:hover .glimpse-arrow { opacity: 1; transform: rotate(0deg) scale(1); }
+
+/* IMAGE GALLERY STRIP */
+/* IMAGE GALLERY CAROUSEL */
+.gallery-carousel {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.gallery-track {
+  display: flex;
+  gap: 2px;
+  animation: galleryScroll 25s linear infinite;
+  width: max-content;
+}
+.gallery-carousel:hover .gallery-track {
+  animation-play-state: paused;
+}
+.gallery-item {
+  width: 320px;
+  aspect-ratio: 1;
+  background: var(--accent-soft);
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.4s;
+  display: block;
+}
+.gallery-item:hover img { transform: scale(1.05); }
+
+@keyframes galleryScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 900px) {
+  .gallery-item { width: 220px; }
+}
+
+/* CTA SECTION */
+.cta-section {
+  background: var(--ink); padding: 100px 56px; text-align: center;
+}
+.cta-eyebrow {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 28px;
+}
+.cta-heading {
+  font-family: var(--serif); font-size: clamp(40px, 5vw, 72px);
+  font-weight: 300; color: var(--cream); line-height: 1.15; margin-bottom: 48px;
+}
+.cta-heading em { font-style: italic; color: var(--accent); }
+.cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.btn-outline {
+  border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.6);
+  padding: 14px 32px; font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; text-decoration: none; display: inline-block;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { height: 55vw; min-height: 260px; }
+  .hero-left { padding: 110px 20px 64px; }
+  .hero-scroll { left: 20px; }
+  .intro-strip { grid-template-columns: 1fr; padding: 60px 20px; gap: 40px; }
+  .stats-band { grid-template-columns: repeat(2,1fr); }
+  .glimpse-grid { grid-template-columns: 1fr; }
+  .glimpse { padding: 60px 20px; }
+  .cta-section { padding: 64px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Vanshika</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html" class="cta">Say Hello</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Brand Strategist & Leader</div>
+    <h1 class="hero-name">
+      Vanshika<br>
+      Saran <em>Sharma</em>
+    </h1>
+    <p class="hero-subtitle">Real · Giving · Empathetic · Curious</p>
+    <p class="hero-bio">Strategic and people-centric leader with an MBA and 3+ years of experience in business development and marketing,complemented by board governance experience in the not-for-profit sector. Driven to create positive, sustainable impact while delivering measurable results.</p>
+    <div class="hero-ctas">
+      <a href="experience.html" class="btn-primary">View Work</a>
+      <a href="about.html" class="btn-ghost">About Me</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="BOD-Sendoff-26.jpg" alt="Vanshika Saran Sharma">
+    <div class="hero-location">Ottawa, Canada · 2025</div>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-dot"></span>Leadership</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Board Governance</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Strategic Thinking</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Stakeholder Management</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Communication</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Public Speaking</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Thought Leadership</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Brand Marketing</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Digital Strategy</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Content Writing</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Business Analysis</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Project Management</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Team Collaboration</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>People-Centric Approach</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Non-Profit Leadership</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Empathy</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Community Engagement</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Research &amp; Insights</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Adaptability &amp; Resilience</div>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section>
+  <div class="intro-strip">
+    <div class="intro-quote reveal">
+      "Leadership with <em>heart</em> &amp; Strategy with <em>soul</em>."
+    </div>
+    <div class="intro-right">
+      <p class="reveal reveal-delay-1">I am a <strong>brave brand strategist</strong> who <strong>loves people</strong>, has a wide variety of experiences including <strong>marketing</strong> and board <strong>governance</strong> experience. I have <strong>published research</strong> on <strong>subliminal advertising</strong>, <strong>initiated an NGO</strong>, and spent <strong>over three years</strong> in corporate, loving every single bit of it. One of the most courageous things I have ever done was moving to Canada all by myself, and the experience has shaped the way I approach challenges and opportunities. <strong>I feel like there is nothing I cannot do!</strong> </p>
+      <p class="reveal reveal-delay-2">I believe the <strong>strongest brands are simple</strong>, with <strong>clarity in their purpose</strong> and what truly matters to them, and I try to <strong>live by the same principle</strong> by driving purpose-driven change wherever I go. I work to make every room I enter <strong>feel more collaborative</strong>, and <strong>Equity, Diversity, and Inclusion matters deeply to me</strong>. I am also passionate about women empowerment, helping the elderly, children, and animals, and I try to contribute wherever I can.</p> <p class="reveal reveal-delay-2">From being part of a <strong>leading and winning pre-sales team</strong> to serving as a <strong>not-for-profit board president</strong>, I have learned a great deal, met amazing people who lifted me up, forever grateful for that. I thrive in spaces where <strong>collaboration, respect, and human connection</strong> matter. I am driven to <strong>create impact, inspire others, and leave everything better than I found it.</strong> </p>
+      <div style="margin-top:32px;" class="reveal reveal-delay-3">
+        <a href="about.html" class="btn-primary">Read My Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stat-block reveal">
+    <div class="stat-num">5<span>+</span></div>
+    <div class="stat-label">NGOs' worked with</div>
+  </div>
+  <div class="stat-block reveal reveal-delay-1">
+    <div class="stat-num">3<span>+</span></div>
+    <div class="stat-label">Years Industry Experience</div>
+  </div>
+  <div class="stat-block reveal reveal-delay-2">
+    <div class="stat-num">10<span>+</span></div>
+    <div class="stat-label">Global Brands worked with</div>
+  </div>
+  <div class="stat-block reveal reveal-delay-3">
+    <div class="stat-num">1</div>
+    <div class="stat-label">Published Research Paper</div>
+  </div>
+</div>
+
+<!-- GLIMPSE / PAGE CARDS -->
+<section class="glimpse">
+  <div class="glimpse-inner">
+    <div class="section-label reveal">Explore</div>
+    <div class="glimpse-grid">
+
+      <a href="experience.html" class="glimpse-card reveal">
+        <img src="Leadership.jpeg" alt="Career">
+        <!-- <div class="glimpse-photo-placeholder" style="background: linear-gradient(135deg,#6B5A4E,#3D2B1F);">
+          <svg viewBox="0 0 40 40" fill="none" style="width:40px;opacity:0.4"><rect x="6" y="12" width="28" height="20" rx="2" stroke="white" stroke-width="1.2"/><path d="M14 12V9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3" stroke="white" stroke-width="1.2"/></svg>
+          Add your photo here
+        </div> -->
+        <div class="glimpse-overlay">
+          <div class="glimpse-label">Experience</div>
+          <div class="glimpse-title">Career & Leadership</div>
+        </div>
+        <div class="glimpse-arrow">↗</div>
+      </a>
+      
+      
+      <a href="about.html" class="glimpse-card reveal reveal-delay-1">
+        <!-- <img src="speaking-photo.jpg" alt="Public Speaking"> -->
+        <img src="BOD-Sendoff-24.jpg" alt="Public Speaking">
+        <div class="glimpse-overlay">
+          <div class="glimpse-label">About</div>
+          <div class="glimpse-title">My Story & Values</div>
+        </div>
+        <div class="glimpse-arrow">↗</div>
+      </a>
+
+
+
+      <a href="projects.html" class="glimpse-card reveal reveal-delay-2">
+        <img src="Research.jpeg" alt="Career">
+        <!-- <div class="glimpse-photo-placeholder" style="background: linear-gradient(135deg,#C4622D,#8B3A1A);">
+          <svg viewBox="0 0 40 40" fill="none" style="width:40px;opacity:0.4"><path d="M8 8h24v24H8z" stroke="white" stroke-width="1.2"/><path d="M14 20h12M20 14v12" stroke="white" stroke-width="1.2"/></svg>
+          Add your photo here
+        </div> -->
+        <div class="glimpse-overlay">
+          <div class="glimpse-label">Projects</div>
+          <div class="glimpse-title">Work & Publications</div>
+        </div>
+        <div class="glimpse-arrow">↗</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="gallery-carousel">
+  <div class="gallery-track">
+    <!-- Original images -->
+    <div class="gallery-item"><img src="YourWard-YourVoice-28.jpg" alt="Keynote Speaking"></div>
+    <div class="gallery-item"><img src="Board of Directors 2025-10.jpg" alt="Board of Directors"></div>
+    <div class="gallery-item"><img src="PW - 2SYZ .jpg" alt="Community Event"></div>
+    <div class="gallery-item"><img src="unnamed (1).jpg" alt="Portrait"></div>
+    <div class="gallery-item"><img src="Board of Directors 2025-5 (1).jpg" alt="Keynote Speaking"></div>
+    <div class="gallery-item"><img src="YourWard-YourVoice-33.jpg" alt="Board of Directors"></div>
+    <div class="gallery-item"><img src="YourWard-YourVoice-36.jpg" alt="Community Event"></div>
+    <div class="gallery-item"><img src="YRB-2025-Blog-Image-Vanshika-Sharma.jpg" alt="Portrait"></div>
+    <div class="gallery-item"><img src="NGO 1.jpeg" alt="NGO"></div>
+    <div class="gallery-item"><img src="NGO 2.jpeg" alt="NGO"></div>
+    <!-- Duplicated for seamless loop — add more images to both sets -->
+    <div class="gallery-item"><img src="YourWard-YourVoice-28.jpg" alt="Keynote Speaking"></div>
+    <div class="gallery-item"><img src="Board of Directors 2025-10.jpg" alt="Board of Directors"></div>
+    <div class="gallery-item"><img src="PW - 2SYZ .jpg" alt="Community Event"></div>
+    <div class="gallery-item"><img src="unnamed (1).jpg" alt="Portrait"></div>
+    <div class="gallery-item"><img src="Board of Directors 2025-5 (1).jpg" alt="Keynote Speaking"></div>
+    <div class="gallery-item"><img src="YourWard-YourVoice-33.jpg" alt="Board of Directors"></div>
+    <div class="gallery-item"><img src="YourWard-YourVoice-36.jpg" alt="Community Event"></div>
+    <div class="gallery-item"><img src="YRB-2025-Blog-Image-Vanshika-Sharma.jpg" alt="Portrait"></div>
+    <div class="gallery-item"><img src="NGO 1.jpeg" alt="NGO"></div>
+    <div class="gallery-item"><img src="NGO 2.jpeg" alt="NGO"></div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <p class="cta-eyebrow reveal">Get in Touch</p>
+  <h2 class="cta-heading reveal reveal-delay-1">Let's build something <em>meaningful.</em></h2>
+  <div class="cta-buttons reveal reveal-delay-2">
+    <a href="contact.html" class="btn-primary">Say Hello</a>
+    <a href="projects.html" class="btn-outline">View Projects</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2026 Vanshika Saran Sharma. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="experience.html">Experience</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.linkedin.com/in/vanshikasaransharma/" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

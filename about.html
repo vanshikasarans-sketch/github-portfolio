@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Vanshika Saran Sharma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero {
+  padding: 160px 56px 80px;
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+}
+.page-hero-label {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 24px;
+}
+.page-hero-title {
+  font-family: var(--serif); font-size: clamp(48px, 5.5vw, 80px);
+  font-weight: 300; line-height: 1.05;
+}
+.page-hero-title em { font-style: italic; color: var(--accent); }
+.page-hero-right {
+  padding-bottom: 8px;
+}
+.page-hero-right p {
+  font-family: var(--serif); font-size: 22px; font-weight: 300;
+  font-style: italic; line-height: 1.6; color: var(--muted);
+}
+.page-divider { height: 1px; background: var(--line); max-width: 1200px; margin: 0 auto 0; }
+
+/* ABOUT CONTENT */
+.about-grid {
+  padding: 80px 56px 100px;
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 340px 1fr; gap: 80px; align-items: start;
+}
+.about-sidebar { position: sticky; top: 100px; }
+.about-photo {
+  width: 100%; aspect-ratio: 3/4;
+  overflow: hidden; margin-bottom: 28px;
+  background: linear-gradient(160deg,#E8D5C4,#C4A882,#B8865A);
+}
+.about-photo img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
+}
+.about-photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; color: rgba(255,255,255,0.5); font-family: var(--serif);
+  font-size: 13px; font-style: italic;
+}
+.photo-caption {
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); line-height: 1.7;
+}
+
+.about-body p {
+  font-size: 15px; line-height: 2.05; color: var(--muted); margin-bottom: 28px;
+}
+.about-body p strong { color: var(--ink); font-weight: 500; }
+.about-body p:first-child {
+  font-family: var(--serif); font-size: 21px; font-style: italic;
+  color: var(--ink); line-height: 1.65; margin-bottom: 36px;
+}
+
+/* SKILLS DARK */
+.skills-section { background: var(--ink); padding: 100px 56px; }
+.skills-inner { max-width: 1200px; margin: 0 auto; }
+.skills-section .section-label { color: var(--accent); }
+.skills-section .section-label::after { background: rgba(255,255,255,0.1); }
+.skills-heading {
+  font-family: var(--serif); font-size: clamp(32px, 3.8vw, 50px);
+  font-weight: 300; color: var(--cream); margin-bottom: 64px;
+  max-width: 560px; line-height: 1.25;
+}
+.skills-heading em { font-style: italic; color: var(--accent); }
+.skills-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 2px; }
+.skill-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 32px 24px; transition: background 0.3s, transform 0.3s; cursor: default;
+}
+.skill-card:hover { background: rgba(196,98,45,0.14); transform: translateY(-4px); border-color: var(--accent); }
+.skill-icon { font-size: 26px; margin-bottom: 18px; display: block; }
+.skill-name { font-family: var(--serif); font-size: 17px; font-weight: 300; color: var(--cream); margin-bottom: 8px; }
+.skill-desc { font-size: 12px; color: rgba(255,255,255,0.38); line-height: 1.7; }
+
+/* RECOGNITION */
+.recognition { padding: 100px 56px; background: var(--cream); }
+.recognition-inner { max-width: 1200px; margin: 0 auto; }
+.rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 56px; }
+.rec-card {
+  background: var(--warm-white); padding: 48px 40px;
+  position: relative; overflow: hidden; transition: transform 0.3s;
+}
+.rec-card:hover { transform: translateY(-3px); }
+.rec-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%; background: var(--accent);
+  transform: scaleY(0); transform-origin: top; transition: transform 0.4s;
+}
+.rec-card:hover::before { transform: scaleY(1); }
+.rec-num {
+  font-family: var(--serif); font-size: 72px; font-weight: 300;
+  color: var(--accent-soft); line-height: 1; margin-bottom: 20px;
+}
+.rec-title { font-family: var(--serif); font-size: 24px; font-weight: 300; margin-bottom: 14px; }
+.rec-body { font-size: 13px; line-height: 1.85; color: var(--muted); }
+.rec-card.dark { background: var(--ink); color: var(--cream); }
+.rec-card.dark .rec-num { color: rgba(196,98,45,0.25); }
+.rec-card.dark .rec-title { color: var(--cream); }
+.rec-card.dark .rec-body { color: rgba(255,255,255,0.45); }
+
+/* SKILLS TABS */
+.skills-tabs {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 40px;
+}
+.skills-tab {
+  font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 9px 20px;
+  border: 1px solid rgba(255,255,255,0.12); background: none;
+  color: rgba(255,255,255,0.45); cursor: pointer;
+  transition: all 0.2s;
+}
+.skills-tab:hover { border-color: var(--accent); color: var(--accent); }
+.skills-tab.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+/* SKILLS PANELS */
+.skills-panel { display: none; }
+.skills-panel.active { display: block; }
+
+/* EDUCATION */
+.education { padding: 100px 56px; max-width: 1200px; margin: 0 auto; }
+.edu-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 56px; }
+.edu-card {
+  border: 1px solid var(--line); padding: 36px 28px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.edu-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.edu-degree { font-family: var(--serif); font-size: 19px; font-weight: 300; margin-bottom: 8px; line-height: 1.3; }
+.edu-school { font-size: 13px; color: var(--accent); margin-bottom: 5px; font-weight: 400; }
+.edu-location { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.edu-year { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
+
+/* CERTS */
+.certs-section { background: var(--ink); padding: 80px 56px; }
+.certs-inner { max-width: 1200px; margin: 0 auto; }
+.certs-section .section-label { color: var(--accent); }
+.certs-section .section-label::after { background: rgba(255,255,255,0.1); }
+.certs-list { margin-top: 48px; border-top: 1px solid rgba(255,255,255,0.08); }
+.cert-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.06); gap: 24px;
+}
+.cert-name { font-size: 14px; font-weight: 300; color: var(--cream); flex: 1; }
+.cert-issuer { font-size: 12px; color: var(--accent); white-space: nowrap; }
+.cert-date { font-size: 11px; color: rgba(255,255,255,0.3); white-space: nowrap; }
+
+@media (max-width: 900px) {
+  .page-hero { grid-template-columns: 1fr; padding: 120px 20px 60px; gap: 32px; }
+  .about-grid { grid-template-columns: 1fr; padding: 48px 20px 64px; }
+  .about-sidebar { position: static; }
+  .skills-grid { grid-template-columns: repeat(2,1fr); }
+  .skills-section { padding: 64px 20px; }
+  .recognition { padding: 64px 20px; }
+  .rec-grid { grid-template-columns: 1fr; }
+  .edu-grid { grid-template-columns: 1fr; }
+  .education { padding: 64px 20px; }
+  .certs-section { padding: 64px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Vanshika</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html" class="cta">Say Hello</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div>
+    <div class="page-hero-label reveal">About Me</div>
+    <h1 class="page-hero-title reveal reveal-delay-1">Where <em>strategy</em><br>meets heart.</h1>
+  </div>
+  <div class="page-hero-right">
+    <p class="reveal reveal-delay-2">"A society grows great when old men plant trees whose shade they know they shall never sit in” - Greek Proverb</p>
+  </div>
+</div>
+<div class="page-divider"></div>
+
+<!-- ABOUT BODY -->
+<div class="about-grid">
+  <div class="about-sidebar">
+    <div class="about-photo reveal">
+      <!-- Replace img tag below with your photo, remove the placeholder div -->
+      <!-- <img src="BOD-Sendoff-25.jpg" alt="Vanshika Saran Sharma"> -->
+      <img src="BOD-Sendoff-25.jpg" alt="Vanshika Saran Sharma">
+      <!-- <div class="about-photo-placeholder">
+        <svg viewBox="0 0 64 64" fill="none" style="width:56px;opacity:0.35">
+          <circle cx="32" cy="22" r="12" stroke="white" stroke-width="1.2"/>
+          <path d="M8 58c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="white" stroke-width="1.2"/>
+        </svg>
+        Your portrait photo here
+      </div> -->
+    </div>
+    <p class="photo-caption reveal reveal-delay-1">Vanshika Saran Sharma</p>
+  </div>
+
+  <div class="about-body">
+    <p class="reveal">"I believe the most effective leaders are those who listen and care as much as they lead. Here I am, building brands with purpose, governing with integrity, and connecting with genuine empathy"</p>
+<p class="reveal reveal-delay-1">
+  Most recently, I served as <strong>President of the Algonquin Students’ Association Board of Directors (2025–2026)</strong>, representing over 20,000 students while completing a <strong>Post-Graduate Certificate in Brand Management</strong> at Algonquin College. In this role, I chaired board meetings, ensured governance and bylaw compliance, managed fiduciary responsibilities, and served as the public voice of the organization.
+</p>
+
+<p class="reveal reveal-delay-2">
+  Prior to this, I launched the <strong>Hridya Sparsh Foundation</strong> (2023), reflecting my commitment to creating social impact and supporting the elderly community. From 2021 to 2024, I advanced from <strong>Analyst</strong> to <strong>Senior Analyst</strong> at <strong>Cognizant India</strong>, leading end-to-end bid management, crafting proposals, shaping competitive positioning, and collaborating across teams. My contributions were recognized through multiple <strong>BD Analyst of the Month</strong> awards and top-tier performance ratings.
+</p>
+
+<p class="reveal reveal-delay-3">
+  Earlier, I gained international marketing experience through interim projects at <strong>Ogilvy</strong>, <strong>Isobar</strong>, and <strong>Britannia</strong>, and began my career in digital marketing at <strong>AlgoWorks</strong>.
+</p>
+
+<p class="reveal reveal-delay-4">
+  I hold an <strong>MBA in Communication Management</strong> from Symbiosis Institute of Media & Communication and a <strong>BA in Journalism & Mass Communication</strong> from Amity School of Communication. These experiences across brands, industries, and continents have shaped my understanding that <strong>impactful strategy is always human at its core.</strong>
+</p>
+
+<p class="reveal reveal-delay-5">
+  I am guided by three core values: <strong>authenticity</strong>, <strong>selflessness</strong>, and <strong>curiosity</strong>. I strive to anticipate challenges, lead by example, initiate meaningful change, and support others with empathy and care. I aim for excellence in every endeavor, recognizing that leadership is measured by the impact we create, not the titles we hold.
+</p>
+
+<p class="reveal reveal-delay-6">
+  <em>"If you want to go fast, go alone. If you want to go far, go together."</em> – African Proverb. <br> For me, collaboration is the name of the <strong>winning</strong> game!
+</p>
+
+  </div>
+</div>
+
+<!-- SKILLS -->
+<!-- SKILLS -->
+<section class="skills-section">
+  <div class="skills-inner">
+    <div class="section-label reveal">Core Strengths</div>
+    <h2 class="skills-heading reveal reveal-delay-1">What I bring to <em>every room</em> I walk into.</h2>
+
+    <!-- TAB BUTTONS -->
+    <div class="skills-tabs reveal reveal-delay-2">
+      <button class="skills-tab active" data-tab="personal">Personal Strengths</button>
+      <button class="skills-tab" data-tab="professional">Professional Skills</button>
+      <button class="skills-tab" data-tab="business">Project & Business</button>
+      <button class="skills-tab" data-tab="analytics">Analytics & Research</button>
+      <button class="skills-tab" data-tab="tools">Tools & Platforms</button>
+      <button class="skills-tab" data-tab="leadership">Leadership</button>
+    </div>
+
+    <!-- PERSONAL STRENGTHS -->
+    <div class="skills-panel active" data-panel="personal">
+      <div class="skills-grid">
+        <div class="skill-card"><span class="skill-icon">🎤</span><div class="skill-name">Public Speaking</div><div class="skill-desc">Keynote presenter and confident communicator across institutional and community settings.</div></div>
+        <div class="skill-card"><span class="skill-icon">✍️</span><div class="skill-name">Content Writing</div><div class="skill-desc">Crafting compelling narratives — proposals, POVs, brand stories, and research papers.</div></div>
+        <div class="skill-card"><span class="skill-icon">🏛️</span><div class="skill-name">Governance</div><div class="skill-desc">Board-level experience chairing meetings and ensuring fiduciary accountability.</div></div>
+        <div class="skill-card"><span class="skill-icon">🌟</span><div class="skill-name">Leadership</div><div class="skill-desc">Led teams, mentored analysts, and represented 20,000+ students institutionally.</div></div>
+        <div class="skill-card"><span class="skill-icon">🤝</span><div class="skill-name">People Person</div><div class="skill-desc">Building trust-based relationships across stakeholders and senior leadership.</div></div>
+        <div class="skill-card"><span class="skill-icon">💡</span><div class="skill-name">Thought Leadership</div><div class="skill-desc">Published researcher and strategic voice on brand and communication innovation.</div></div>
+        <div class="skill-card"><span class="skill-icon">❤️</span><div class="skill-name">Non-Profit</div><div class="skill-desc">Board governance in the not-for-profit sector and NGO founder driving community impact.</div></div>
+        <div class="skill-card"><span class="skill-icon">🫶</span><div class="skill-name">Empathy</div><div class="skill-desc">Deeply attuned to human needs — the foundation of every strategy I build.</div></div>
+        <div class="skill-card"><span class="skill-icon">🙌</span><div class="skill-name">Helping Others</div><div class="skill-desc">Mentoring talent, advocating for students, uplifting communities around me.</div></div>
+        <div class="skill-card"><span class="skill-icon">🎯</span><div class="skill-name">Brand Strategy</div><div class="skill-desc">End-to-end brand positioning, narrative-building, and campaign execution.</div></div>
+      </div>
+    </div>
+
+    <!-- PROFESSIONAL SKILLS -->
+    <div class="skills-panel" data-panel="professional">
+      <div class="skills-grid">
+        <div class="skill-card"><span class="skill-icon">🎯</span><div class="skill-name">Marketing & Brand Strategy</div><div class="skill-desc">End-to-end brand positioning, narrative-building, and campaign planning across channels.</div></div>
+        <div class="skill-card"><span class="skill-icon">📊</span><div class="skill-name">Campaign Planning</div><div class="skill-desc">Designing and executing 360° marketing campaigns with measurable impact.</div></div>
+        <div class="skill-card"><span class="skill-icon">📱</span><div class="skill-name">Social Media Strategy</div><div class="skill-desc">Creating and managing content to drive engagement and brand visibility.</div></div>
+        <div class="skill-card"><span class="skill-icon">💻</span><div class="skill-name">Digital & Content Marketing</div><div class="skill-desc">SEO, SEM, paid media campaigns, and content marketing for integrated campaigns.</div></div>
+        <div class="skill-card"><span class="skill-icon">📑</span><div class="skill-name">Proposal & RFP Management</div><div class="skill-desc">Crafting and managing proposals and responses to Requests for Proposals.</div></div>
+        <div class="skill-card"><span class="skill-icon">🔍</span><div class="skill-name">Market Research & Consumer Insights</div><div class="skill-desc">Analyzing trends, consumer behavior, and competitive intelligence to inform strategy.</div></div>
+      </div>
+    </div>
+
+    <!-- PROJECT & BUSINESS -->
+    <div class="skills-panel" data-panel="business">
+      <div class="skills-grid">
+        <div class="skill-card"><span class="skill-icon">📌</span><div class="skill-name">Bid & Proposal Management</div><div class="skill-desc">Managing opportunities, bids, and proposal development for business growth.</div></div>
+        <div class="skill-card"><span class="skill-icon">📈</span><div class="skill-name">Strategic Planning & Execution</div><div class="skill-desc">Assessing opportunities and implementing strategies with measurable outcomes.</div></div>
+        <div class="skill-card"><span class="skill-icon">🤝</span><div class="skill-name">Stakeholder Management</div><div class="skill-desc">Building and maintaining strong relationships across teams, clients, and senior leadership.</div></div>
+        <div class="skill-card"><span class="skill-icon">👥</span><div class="skill-name">Team Leadership & Mentoring</div><div class="skill-desc">Guiding teams, mentoring colleagues, and fostering professional development.</div></div>
+        <div class="skill-card"><span class="skill-icon">💼</span><div class="skill-name">Business Development</div><div class="skill-desc">Driving revenue and growth through proposal management, client interactions, and strategic initiatives.</div></div>
+        <div class="skill-card"><span class="skill-icon">📊</span><div class="skill-name">Data-Driven Decision-Making</div><div class="skill-desc">Using analytics and insights to inform business and marketing strategies.</div></div>
+      </div>
+    </div>
+
+    <!-- ANALYTICS & RESEARCH -->
+    <div class="skills-panel" data-panel="analytics">
+      <div class="skills-grid">
+        <div class="skill-card"><span class="skill-icon">📋</span><div class="skill-name">Qualitative & Quantitative Research</div><div class="skill-desc">Designing surveys, analyzing data, and extracting actionable insights.</div></div>
+        <div class="skill-card"><span class="skill-icon">🧠</span><div class="skill-name">Consumer Behavior Analysis</div><div class="skill-desc">Understanding audience motivations to optimize strategy and campaigns.</div></div>
+        <div class="skill-card"><span class="skill-icon">📊</span><div class="skill-name">Competitive Analysis & Intelligence</div><div class="skill-desc">Evaluating market landscape to identify opportunities and threats.</div></div>
+        <div class="skill-card"><span class="skill-icon">📌</span><div class="skill-name">Data Analysis</div><div class="skill-desc">Transforming complex data into actionable business recommendations.</div></div>
+      </div>
+    </div>
+
+    <!-- TOOLS & PLATFORMS -->
+    <div class="skills-panel" data-panel="tools">
+      <div class="skills-grid">
+        <div class="skill-card"><span class="skill-icon">💬</span><div class="skill-name">Collaboration Tools</div><div class="skill-desc">Slack, Google Workspace (Google+, Google My Business).</div></div>
+        <div class="skill-card"><span class="skill-icon">💻</span><div class="skill-name">Productivity & Presentation</div><div class="skill-desc">Microsoft Office Suite, Canva, and other presentation software.</div></div>
+        <div class="skill-card"><span class="skill-icon">📈</span><div class="skill-name">Analytics & SEO Tools</div><div class="skill-desc">SEO and analytics platforms, Google Ads, Meta Ads.</div></div>
+      </div>
+    </div>
+
+    <!-- LEADERSHIP -->
+    <div class="skills-panel" data-panel="leadership">
+      <div class="skills-grid">
+        <div class="skill-card"><span class="skill-icon">🏛️</span><div class="skill-name">Governance & Fiduciary Oversight</div><div class="skill-desc">Board of Directors experience with accountability and strategic oversight.</div></div>
+        <div class="skill-card"><span class="skill-icon">🎤</span><div class="skill-name">Strategic Communications</div><div class="skill-desc">Keynote presentations and confident communication across diverse settings.</div></div>
+        <div class="skill-card"><span class="skill-icon">🌟</span><div class="skill-name">Empathy-Driven Leadership</div><div class="skill-desc">Leading with understanding, mentoring teams, and uplifting communities.</div></div>
+        <div class="skill-card"><span class="skill-icon">🤝</span><div class="skill-name">Altruism & Community Engagement</div><div class="skill-desc">NGO founder, student advocacy, and initiatives that impact communities.</div></div>
+        <div class="skill-card"><span class="skill-icon">🌏</span><div class="skill-name">Cross-Cultural Collaboration</div><div class="skill-desc">Working effectively across diverse teams and global environments.</div></div>
+        <div class="skill-card"><span class="skill-icon">💪</span><div class="skill-name">Adaptability & Resilience</div><div class="skill-desc">Thriving in dynamic, challenging, and evolving professional contexts.</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RECOGNITION
+<section class="recognition">
+  <div class="recognition-inner">
+    <div class="section-label reveal">Recognition & Achievements</div>
+    <div class="rec-grid">
+      <div class="rec-card reveal">
+        <div class="rec-num">01</div>
+        <div class="rec-title">Published Researcher</div>
+        <p class="rec-body">First Author, "Subliminal Advertising: From Its Genesis to Contemporary Practice and Future Directions in Consumer Psychology and Marketing Communication," Science, Education and Innovations, IMCRA, 2025.</p>
+      </div>
+      <div class="rec-card dark reveal reveal-delay-1">
+        <div class="rec-num">02</div>
+        <div class="rec-title">BD-Analyst of the Month</div>
+        <p class="rec-body">Won multiple times at Cognizant; ranked among the highest-rated employees in 2023–2024 for outstanding business development and proposal strategy performance.</p>
+      </div>
+      <div class="rec-card dark reveal reveal-delay-2">
+        <div class="rec-num">03</div>
+        <div class="rec-title">National Award Winner</div>
+        <p class="rec-body">Runners-up, AD MAD National Ad Making Competition by PayTM-Intel (2019). Winner: Miss Symbi FIT 2019–20 (Individual) & Miss FIT 2020, Sympulse.</p>
+      </div>
+      <div class="rec-card reveal reveal-delay-3">
+        <div class="rec-num">04</div>
+        <div class="rec-title">HBR Ascend Select Member</div>
+        <p class="rec-body">Member of Harvard Business Review's Ascend Select community since July 2020 — a curated network of emerging global business leaders.</p>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- EDUCATION -->
+<section class="education">
+  <div class="section-label reveal">Education</div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-degree">PG — Brand Management</div>
+      <div class="edu-school">Algonquin College</div>
+      <div class="edu-location">Ottawa, Canada</div>
+      <div class="edu-year">April 2026 </div>
+    </div>
+    <div class="edu-card reveal reveal-delay-1">
+      <div class="edu-degree">MBA — Communication Management</div>
+      <div class="edu-school">Symbiosis Institute of Media & Communication</div>
+      <div class="edu-location">Pune, India</div>
+      <div class="edu-year">May 2021</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-2">
+      <div class="edu-degree">BA — Journalism & Mass Communication</div>
+      <div class="edu-school">Amity School of Communication</div>
+      <div class="edu-location">Noida, India</div>
+      <div class="edu-year">May 2019</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section class="certs-section">
+  <div class="certs-inner">
+    <div class="section-label reveal">Certifications</div>
+    <div class="certs-list">
+      <div class="cert-item reveal"><span class="cert-name">Supporting Student Mental Health: Recognize, Respond & Refer</span><span class="cert-issuer">Algonquin College</span><span class="cert-date">Nov 2025</span></div>
+      <div class="cert-item reveal reveal-delay-1"><span class="cert-name">Public Speaking & Presentations</span><span class="cert-issuer">Training Alliance</span><span class="cert-date">Jun 2025</span></div>
+      <div class="cert-item reveal reveal-delay-2"><span class="cert-name">Certified ScrumMaster (CSM)</span><span class="cert-issuer">Scrum Alliance</span><span class="cert-date">Jul 2024</span></div>
+      <div class="cert-item reveal reveal-delay-3"><span class="cert-name">APMP® Bid & Proposal Management Foundation</span><span class="cert-issuer">APMP International</span><span class="cert-date">Dec 2023</span></div>
+      <div class="cert-item reveal reveal-delay-4"><span class="cert-name">Enterprise Design Thinking Practitioner</span><span class="cert-issuer">IBM</span><span class="cert-date">Sep 2021</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2026 Vanshika Saran Sharma. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="experience.html">Experience</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.linkedin.com/in/vanshikasaransharma/" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+
+<script>
+  document.querySelectorAll('.skills-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.skills-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.skills-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`.skills-panel[data-panel="${tab.dataset.tab}"]`).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
