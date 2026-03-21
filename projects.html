@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Vanshika Saran Sharma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero {
+  padding: 160px 56px 80px;
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+}
+.page-hero-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
+.page-hero-title { font-family: var(--serif); font-size: clamp(48px, 5.5vw, 78px); font-weight: 300; line-height: 1.05; }
+.page-hero-title em { font-style: italic; color: var(--accent); }
+.page-hero-right p { font-family: var(--serif); font-size: 20px; font-weight: 300; font-style: italic; line-height: 1.65; color: var(--muted); }
+.page-divider { height: 1px; background: var(--line); max-width: 1200px; margin: 0 auto; }
+
+/* FILTER BAR */
+.filter-bar {
+  padding: 40px 56px 0;
+  max-width: 1200px; margin: 0 auto;
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+}
+.filter-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-right: 8px; }
+.filter-btn {
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  border: 1px solid var(--line); padding: 7px 18px; cursor: pointer;
+  background: none; color: var(--muted); transition: all 0.2s; font-family: var(--sans);
+}
+.filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+.filter-btn.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+/* PROJECT GRID */
+.projects-section {
+  padding: 48px 56px 100px;
+  max-width: 1200px; margin: 0 auto;
+}
+.projects-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+}
+.project-card {
+  position: relative; cursor: pointer;
+  background: var(--cream); overflow: hidden;
+  transition: transform 0.3s;
+  border: 1px solid var(--line);
+}
+.project-card:hover { transform: translateY(-4px); border-color: var(--accent); z-index: 2; }
+.project-thumb {
+  width: 100%; aspect-ratio: 4/3;
+  background: var(--accent-soft);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; position: relative; overflow: hidden;
+  transition: transform 0.4s;
+}
+.project-card:hover .project-thumb { transform: scale(1.02); }
+.project-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.project-thumb-icon {
+  font-size: 36px; opacity: 0.6; display: block;
+}
+.project-thumb-label {
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); font-family: var(--sans); object-fit: cover;
+}
+.project-open-icon {
+  position: absolute; top: 14px; right: 14px;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 14px; opacity: 0;
+  transition: opacity 0.3s, background 0.2s;
+}
+.project-card:hover .project-open-icon { opacity: 1; background: var(--accent); border-color: var(--accent); }
+.project-category {
+  position: absolute; bottom: 12px; left: 14px;
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  background: var(--accent); color: white; padding: 3px 10px;
+}
+.project-info { padding: 22px 24px 24px; }
+.project-title {
+  font-family: var(--serif); font-size: 20px; font-weight: 300;
+  line-height: 1.3; margin-bottom: 8px; color: var(--ink);
+}
+.project-desc { font-size: 12px; line-height: 1.75; color: var(--muted); margin-bottom: 16px; }
+.project-meta {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.project-type { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.project-cta {
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); display: flex; align-items: center; gap: 5px;
+  cursor: pointer; transition: gap 0.2s;
+}
+.project-card:hover .project-cta { gap: 8px; }
+
+.project-card[data-category="research"]:first-child {
+  grid-column: span 2;
+}
+.project-card[data-category="research"]:first-child .project-thumb {
+  aspect-ratio: 21/9;
+}
+.project-card[data-category="research"]:first-child .project-title {
+  font-size: 26px;
+}
+
+/* PDF MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(26,20,16,0.92); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px; opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-box {
+  background: var(--warm-white); width: 100%; max-width: 960px;
+  max-height: 90vh; display: flex; flex-direction: column;
+  transform: translateY(20px); transition: transform 0.3s;
+  overflow: hidden;
+}
+.modal-overlay.open .modal-box { transform: none; }
+.modal-header {
+  padding: 20px 28px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.modal-title { font-family: var(--serif); font-size: 22px; font-weight: 300; }
+.modal-close {
+  width: 36px; height: 36px; border: 1px solid var(--line);
+  background: none; cursor: pointer; font-size: 18px; color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+.modal-close:hover { background: var(--ink); color: var(--cream); }
+.modal-body { flex: 1; overflow: hidden; background: #f0ece4; }
+.modal-body iframe {
+  width: 100%; height: 100%; border: none; min-height: 65vh;
+}
+.modal-footer {
+  padding: 16px 28px; border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.modal-download {
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 6px;
+}
+.modal-download:hover { text-decoration: underline; }
+.modal-nav { display: flex; gap: 8px; }
+.modal-nav-btn {
+  width: 36px; height: 36px; border: 1px solid var(--line);
+  background: none; cursor: pointer; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s; color: var(--ink);
+}
+.modal-nav-btn:hover { background: var(--ink); color: var(--cream); }
+.modal-nav-btn:disabled { opacity: 0.3; cursor: default; }
+.modal-nav-btn:disabled:hover { background: none; color: var(--ink); }
+
+/* PUBLICATION */
+.publication-section { background: var(--ink); padding: 80px 56px; }
+.pub-inner { max-width: 1200px; margin: 0 auto; }
+.pub-inner .section-label { color: var(--accent); }
+.pub-inner .section-label::after { background: rgba(255,255,255,0.1); }
+.pub-card {
+  margin-top: 48px; padding: 48px; border: 1px solid rgba(255,255,255,0.1);
+  display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;
+}
+.pub-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.pub-title { font-family: var(--serif); font-size: clamp(18px,2.2vw,26px); font-weight: 300; color: var(--cream); margin-bottom: 12px; line-height: 1.4; }
+.pub-meta { font-size: 12px; color: rgba(255,255,255,0.35); }
+.pub-icon { font-size: 64px; opacity: 0.2; }
+
+@media (max-width: 900px) {
+  .page-hero { grid-template-columns: 1fr; padding: 120px 20px 60px; gap: 32px; }
+  .filter-bar { padding: 32px 20px 0; }
+  .projects-section { padding: 36px 20px 64px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .publication-section { padding: 60px 20px; }
+  .pub-card { grid-template-columns: 1fr; }
+  .modal-overlay { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Vanshika</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="contact.html" class="cta">Say Hello</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div>
+    <div class="page-hero-label reveal">Projects & Work</div>
+    <h1 class="page-hero-title reveal reveal-delay-1">Work that <em>speaks</em> for itself.</h1>
+  </div>
+  <div class="page-hero-right">
+    <p class="reveal reveal-delay-2">A collection of brand projects, presentations, research, and leadership work. Click any card to open the PDF.</p>
+  </div>
+</div>
+<div class="page-divider"></div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="brand">Brand</button>
+  <button class="filter-btn" data-filter="leadership">Leadership</button>
+  <button class="filter-btn" data-filter="research">Research</button>
+  <!-- <button class="filter-btn" data-filter="campaign">Campaign</button> -->
+  <button class="filter-btn" data-filter="strategy">Strategy</button>
+</div>
+
+<!-- PROJECTS GRID -->
+<section class="projects-section">
+  <div class="projects-grid" id="projectsGrid">
+
+    <!-- 
+      HOW TO ADD YOUR PROJECTS:
+      1. Copy a .project-card block below
+      2. Set data-pdf="your-file.pdf" on the card
+      3. Set data-category to: brand / leadership / research / campaign / strategy
+      4. Update the title, description, type
+      5. Optionally add a cover image inside .project-thumb (replace the emoji placeholder)
+      6. Put your PDF files in the same folder as this HTML file
+    -->
+    
+    <!-- RESEARCH PAPER — PINNED FIRST -->
+    <div class="project-card reveal" data-category="research" data-pdf="https://imcra-az.org/uploads/public_files/2025-10/811192.pdf" data-title="Subliminal Advertising — Published Research">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1A1410,#4A2810);">
+        <span class="project-thumb-icon"><img src="Research_Paper_Thumb.jpg"></span>
+        <span class="project-thumb-label">Published · IMCRA 2025</span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Research</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Subliminal Advertising: From Genesis to Contemporary Practice</div>
+        <p class="project-desc">First-authored research on subliminal advertising, consumer psychology, and future directions in marketing communication. Published in <em>Science, Education and Innovations</em>, IMCRA 2025.</p>
+        <div class="project-meta">
+          <span class="project-type">Research · First Author · 2025</span>
+          <span class="project-cta">Read Paper ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-category="leadership" data-pdf="SLP Presentation_Vanshika.pdf" data-title="My Leadership Journey">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1A1410,#3D2B1F);">
+        <span class="project-thumb-icon"><img src="Leadership_Thumb.jpeg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Leadership</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">My Leadership Journey</div>
+        <p class="project-desc">A keynote presentation delivered at Algonquin's Student Leadership Program — sharing lessons on governance, community, and leading with purpose.</p>
+        <div class="project-meta">
+          <span class="project-type">Presentation · 2026</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLACEHOLDER CARDS — replace with your real PDFs -->
+    <div class="project-card reveal reveal-delay-1" data-category="brand" data-pdf="Final Balenciaga Slide deck (2).pdf" data-title="Brand Reputation and Rebranding - Balenciaga">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#C4622D,#8B3A1A);">
+        <span class="project-thumb-icon"><img src="Balenciaga.jpg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Brand</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Brand Reputation and Rebranding - Balenciaga</div>
+        <p class="project-desc"></p>
+        <div class="project-meta">
+          <span class="project-type">Academic Project</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2" data-category="strategy" data-pdf="3Commercial Plan Development for Maybelline - Academic Project.pdf" data-title="Commercial Plan Development for Maybelline">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#6B5A4E,#3D2B1F);">
+        <span class="project-thumb-icon"><img src="3.jpg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Campaign</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Commercial Plan Development for Maybelline</div>
+        <p class="project-desc"></p>
+        <div class="project-meta">
+          <span class="project-type">Academic Project</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-category="strategy" data-pdf="4. Khadi India - Product Launch in Canada - Academic Project.pdf" data-title="Bid Strategy">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#C4A882,#8B6A45);">
+        <span class="project-thumb-icon"><img src="4..jpg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Strategy</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Khadi India - Product Launch in Canada</div>
+        <p class="project-desc"></p>
+        <div class="project-meta">
+          <span class="project-type">Academic Project</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-1" data-category="research" data-pdf="5. Transit Problem Analysis.pdf" data-title="Transit Problem Analysis">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#3D2B1F,#1A1410);">
+        <span class="project-thumb-icon"><img src="5.jpg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Research</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Transit Problem Analysis</div>
+        <p class="project-desc"></p>
+        <div class="project-meta">
+          <span class="project-type">Academic Project</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2" data-category="research" data-pdf="4. Market Research and Insights for Colgate - Academic Project.pdf" data-title="Market Research and Insights for Colgate">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#C4622D,#6B3015);">
+        <span class="project-thumb-icon"><img src="Colgate - 4 .jpg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Research</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Market Research and Insights for Colgate</div>
+        <p class="project-desc"></p>
+        <div class="project-meta">
+          <span class="project-type">Academic Project</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-category="strategy" data-pdf="6. Brand Strategy - New Restaurant Launch.pdf" data-title="Brand Strategy - New Restaurant Launch">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#8B6A45,#5C4230);">
+        <span class="project-thumb-icon"><img src="6. .jpg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Strategy</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Brand Strategy - New Restaurant Launch</div>
+        <p class="project-desc"></p>
+        <div class="project-meta">
+          <span class="project-type">Academic Project</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-1" data-category="strategy" data-pdf="7. International Brand Launch in Canada - Academic Project.pdf" data-title="International Brand Launch in Canada">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#4A3628,#2A1E15);">
+        <span class="project-thumb-icon"><img src="7..jpg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Strategy</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">International Brand Launch in Canada</div>
+        <p class="project-desc"></p>
+        <div class="project-meta">
+          <span class="project-type">Academic Project</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2" data-category="brand" data-pdf="8. Brand Activism Writeup - Academic Project.pdf" data-title="Brand Activism Writeup">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1A1410,#C4622D);">
+        <span class="project-thumb-icon"><img src="8.jpg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Brand</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Brand Activism Writeup</div>
+        <p class="project-desc"></p>
+        <div class="project-meta">
+          <span class="project-type">Academic Project</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2" data-category="brand" data-pdf="9. Customer Journey - Ikea.pdf" data-title="Customer Journey - Ikea">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1A1410,#C4622D);">
+        <span class="project-thumb-icon"><img src="9.jpg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Brand</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Customer Journey - Ikea</div>
+        <p class="project-desc"></p>
+        <div class="project-meta">
+          <span class="project-type">Academic Project</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2" data-category="brand" data-pdf="10. Analysing Advertisements.pdf" data-title="Analysing Advertisements ">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1A1410,#C4622D);">
+        <span class="project-thumb-icon"><img src="10..jpg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Brand</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Analysing Advertisements</div>
+        <p class="project-desc"></p>
+        <div class="project-meta">
+          <span class="project-type">Academic Project</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2" data-category="research" data-pdf="11. Market Research for Maple Leaf Foods.pdf" data-title="Market Research for Maple Leaf Foods">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1A1410,#C4622D);">
+        <span class="project-thumb-icon"><img src="11.jpg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Research</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Market Research for Maple Leaf Foods</div>
+        <p class="project-desc"></p>
+        <div class="project-meta">
+          <span class="project-type">Academic Project</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2" data-category="brand" data-pdf="12.Brand Guide.pdf" data-title="Brand Guide">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1A1410,#C4622D);">
+        <span class="project-thumb-icon"><img src="12.jpg"></span>
+        <span class="project-thumb-label"></span>
+        <div class="project-open-icon">↗</div>
+        <div class="project-category">Brand</div>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Brand Guide</div>
+        <p class="project-desc"></p>
+        <div class="project-meta">
+          <span class="project-type">Academic Project</span>
+          <span class="project-cta">Open ↗</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- PDF MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Project</div>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <iframe id="modalFrame" src="" title="Project PDF"></iframe>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-download" id="modalDownload" href="" download>↓ Download PDF</a>
+      <div class="modal-nav">
+        <button class="modal-nav-btn" id="prevBtn">←</button>
+        <button class="modal-nav-btn" id="nextBtn">→</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-copy">© 2026 Vanshika Saran Sharma. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="experience.html">Experience</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.linkedin.com/in/vanshikasaransharma/" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+// Filter
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.project-card');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Modal
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modalTitle');
+const modalFrame = document.getElementById('modalFrame');
+const modalDownload = document.getElementById('modalDownload');
+const modalClose = document.getElementById('modalClose');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+let visibleCards = [];
+let currentIndex = 0;
+
+function getVisibleCards() {
+  return [...document.querySelectorAll('.project-card')].filter(c => c.style.display !== 'none' && c.dataset.pdf);
+}
+
+function openModal(card) {
+  const pdf = card.dataset.pdf;
+  const title = card.dataset.title || 'Project';
+  if (!pdf) {
+    alert('No PDF linked yet. Add your filename to data-pdf on this card.');
+    return;
+  }
+  visibleCards = getVisibleCards();
+  currentIndex = visibleCards.indexOf(card);
+  modalTitle.textContent = title;
+  modalFrame.src = pdf;
+  modalDownload.href = pdf;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  updateNavBtns();
+}
+
+function closeModal() {
+  modal.classList.remove('open');
+  modalFrame.src = '';
+  document.body.style.overflow = '';
+}
+
+function updateNavBtns() {
+  prevBtn.disabled = currentIndex <= 0;
+  nextBtn.disabled = currentIndex >= visibleCards.length - 1;
+}
+
+cards.forEach(card => {
+  card.addEventListener('click', () => openModal(card));
+});
+
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+prevBtn.addEventListener('click', () => {
+  if (currentIndex > 0) { currentIndex--; openModalAt(currentIndex); }
+});
+nextBtn.addEventListener('click', () => {
+  if (currentIndex < visibleCards.length - 1) { currentIndex++; openModalAt(currentIndex); }
+});
+
+function openModalAt(idx) {
+  const card = visibleCards[idx];
+  modalTitle.textContent = card.dataset.title || 'Project';
+  modalFrame.src = card.dataset.pdf;
+  modalDownload.href = card.dataset.pdf;
+  updateNavBtns();
+}
+
+document.addEventListener('keydown', e => {
+  if (!modal.classList.contains('open')) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowLeft') prevBtn.click();
+  if (e.key === 'ArrowRight') nextBtn.click();
+});
+</script>
+</body>
+</html>
