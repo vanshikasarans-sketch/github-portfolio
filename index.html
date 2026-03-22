@@ -75,6 +75,18 @@
   color: rgba(255,255,255,0.45); z-index: 3; white-space: nowrap;
 }
 
+
+.marquee-track {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+@keyframes marquee {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+
 /* INTRO STRIP */
 .intro-strip {
   padding: 88px 56px;
@@ -167,38 +179,45 @@
   overflow: hidden;
   position: relative;
   width: 100%;
+  /* Isolate this layer from the rest of the page */
+  contain: layout style;
 }
 .gallery-track {
   display: flex;
   gap: 2px;
-  animation: galleryScroll 25s linear infinite;
+  animation: galleryScroll 30s linear infinite;
   width: max-content;
+  /* Force GPU compositing — eliminates stutter and white flash */
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 .gallery-carousel:hover .gallery-track {
   animation-play-state: paused;
 }
 .gallery-item {
-  width: 320px;
+  width: 300px;
   aspect-ratio: 1;
   background: var(--accent-soft);
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
+  /* Each item also on its own layer */
+  transform: translateZ(0);
 }
 .gallery-item img {
   width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.4s;
   display: block;
+  /* Remove hover scale — it fights the carousel animation */
+  transition: none;
+  will-change: auto;
 }
-.gallery-item:hover img { transform: scale(1.05); }
-
 @keyframes galleryScroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
-
 @media (max-width: 900px) {
-  .gallery-item { width: 220px; }
+  .gallery-item { width: 200px; }
 }
 
 /* CTA SECTION */
@@ -407,27 +426,27 @@
 <div class="gallery-carousel">
   <div class="gallery-track">
     <!-- Original images -->
-    <div class="gallery-item"><img src="YourWard-YourVoice-28.jpg" alt="Keynote Speaking"></div>
-    <div class="gallery-item"><img src="Board of Directors 2025-10.jpg" alt="Board of Directors"></div>
-    <div class="gallery-item"><img src="PW - 2SYZ .jpg" alt="Community Event"></div>
-    <div class="gallery-item"><img src="unnamed (1).jpg" alt="Portrait"></div>
-    <div class="gallery-item"><img src="Board of Directors 2025-5 (1).jpg" alt="Keynote Speaking"></div>
-    <div class="gallery-item"><img src="YourWard-YourVoice-33.jpg" alt="Board of Directors"></div>
-    <div class="gallery-item"><img src="YourWard-YourVoice-36.jpg" alt="Community Event"></div>
-    <div class="gallery-item"><img src="YRB-2025-Blog-Image-Vanshika-Sharma.jpg" alt="Portrait"></div>
-    <div class="gallery-item"><img src="NGO 1.jpeg" alt="NGO"></div>
-    <div class="gallery-item"><img src="NGO 2.jpeg" alt="NGO"></div>
-    <!-- Duplicated for seamless loop — add more images to both sets -->
-    <div class="gallery-item"><img src="YourWard-YourVoice-28.jpg" alt="Keynote Speaking"></div>
-    <div class="gallery-item"><img src="Board of Directors 2025-10.jpg" alt="Board of Directors"></div>
-    <div class="gallery-item"><img src="PW - 2SYZ .jpg" alt="Community Event"></div>
-    <div class="gallery-item"><img src="unnamed (1).jpg" alt="Portrait"></div>
-    <div class="gallery-item"><img src="Board of Directors 2025-5 (1).jpg" alt="Keynote Speaking"></div>
-    <div class="gallery-item"><img src="YourWard-YourVoice-33.jpg" alt="Board of Directors"></div>
-    <div class="gallery-item"><img src="YourWard-YourVoice-36.jpg" alt="Community Event"></div>
-    <div class="gallery-item"><img src="YRB-2025-Blog-Image-Vanshika-Sharma.jpg" alt="Portrait"></div>
-    <div class="gallery-item"><img src="NGO 1.jpeg" alt="NGO"></div>
-    <div class="gallery-item"><img src="NGO 2.jpeg" alt="NGO"></div>
+    <div class="gallery-item"><img src="YourWard-YourVoice-28.jpg" alt="Keynote Speaking" loading="lazy"></div>
+    <div class="gallery-item"><img src="Board of Directors 2025-10.jpg" alt="Board of Directors" loading="lazy"></div>
+    <div class="gallery-item"><img src="PW - 2SYZ .jpg" alt="Community Event" loading="lazy"></div>
+    <div class="gallery-item"><img src="unnamed (1).jpg" alt="Portrait" loading="lazy"></div>
+    <div class="gallery-item"><img src="Board of Directors 2025-5 (1).jpg" alt="Keynote Speaking" loading="lazy"></div>
+    <div class="gallery-item"><img src="YourWard-YourVoice-33.jpg" alt="Board of Directors" loading="lazy"></div>
+    <div class="gallery-item"><img src="YourWard-YourVoice-36.jpg" alt="Community Event" loading="lazy"></div>
+    <div class="gallery-item"><img src="YRB-2025-Blog-Image-Vanshika-Sharma.jpg" alt="Portrait" loading="lazy"></div>
+    <div class="gallery-item"><img src="NGO 1.jpeg" alt="NGO" loading="lazy"></div>
+    <div class="gallery-item"><img src="NGO 2.jpeg" alt="NGO" loading="lazy"></div>
+    <!-- duplicates -->
+    <div class="gallery-item"><img src="YourWard-YourVoice-28.jpg" alt="Keynote Speaking" loading="lazy"></div>
+    <div class="gallery-item"><img src="Board of Directors 2025-10.jpg" alt="Board of Directors" loading="lazy"></div>
+    <div class="gallery-item"><img src="PW - 2SYZ .jpg" alt="Community Event" loading="lazy"></div>
+    <div class="gallery-item"><img src="unnamed (1).jpg" alt="Portrait" loading="lazy"></div>
+    <div class="gallery-item"><img src="Board of Directors 2025-5 (1).jpg" alt="Keynote Speaking" loading="lazy"></div>
+    <div class="gallery-item"><img src="YourWard-YourVoice-33.jpg" alt="Board of Directors" loading="lazy"></div>
+    <div class="gallery-item"><img src="YourWard-YourVoice-36.jpg" alt="Community Event" loading="lazy"></div>
+    <div class="gallery-item"><img src="YRB-2025-Blog-Image-Vanshika-Sharma.jpg" alt="Portrait" loading="lazy"></div>
+    <div class="gallery-item"><img src="NGO 1.jpeg" alt="NGO" loading="lazy"></div>
+    <div class="gallery-item"><img src="NGO 2.jpeg" alt="NGO" loading="lazy"></div>
   </div>
 </div>
 
@@ -452,6 +471,13 @@
   </div>
 </footer>
 
-<script src="main.js"></script>
+
+<script src="main.js">
+document.addEventListener('visibilitychange', () => {
+  const track = document.querySelector('.gallery-track');
+  if (!track) return;
+  track.style.animationPlayState = document.hidden ? 'paused' : 'running';
+});
+</script>
 </body>
 </html>
